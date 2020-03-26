@@ -6,17 +6,19 @@
         <button class='btn btn-info' onclick='location.href="/";'>Search Again</button>
     </div>
 
-    <ul id='movies-list'>
-        <% data.Search.forEach(function(movie){%>
-	        <li> 
-	            <img class='poster' src=<%=movie.Poster%> />
-	            <div>
-                    <h5><%=movie.Title%></h5>
-                    <p><%=movie.Year%></p>
-                </div>
-	        </li>	
-        <% }); %>
-    <ul>
+    <div id="results__wrapper" class="row">
+        <img class="cover col-3" src=<%=data.cover.medium%>>
+        <div class="info col-4">
+            <h4 class="row"><%=data.title%></h4>
+            <h5 class="row"><%=data.authors[0].name%></h5>
+            <h6 class="row"><%=data.publish_date%></h6>
+            <h6 class="row"><%=data.publishers[0].name%></h6>
+            <h6 class="row">ISBN: <%=data.identifiers.isbn_10%></h6>
+            <h6 class="row"><%=data.number_of_pages%> pages</h6>
+        </div >
+    </div>
+
+
 </div>
 
 <%- include ('templates/footer'); -%>

@@ -14,12 +14,13 @@ app.get('/', function(req, res){
 
 /* The handler for the /results route */
 app.get('/results', function(req, res){
-	var query = req.query.search;
-	var url = 'http://www.omdbapi.com/?apikey=thewdb&s=' + query;
+	let ISBN = req.query.search;
+	const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${ISBN}&format=json&jscmd=data`;
 	request(url, function(error, response, dataStream){
 		if (!error && response.statusCode == 200){
 			var data = JSON.parse(dataStream);
-			//console.log('data=',data);
+			data = data["ISBN:" + ISBN]
+			console.log('data=',data);
 			res.render('results', {data: data});
 		}
 	});
